@@ -4,7 +4,7 @@
 % \textbf{What is the GPG?}
 The Gender Pay Gap (GPG) is an indicator which measures the difference in pay for men and women within a population. In the UK, the Office of National Statistics (ONS) defines the GPG as \textit {the gap between the median hourly earnings, excluding overtime, of men and women}. Separate indicators are defined for bonus pay \cite{ONS2018}.  
 
-The GPG is often misrepresented in the media as being an indicator of pay discrimination \cite{Lukas2011}, but it is not intended to measure unequal pay for comparable jobs within a company or sector. Instead, it reflects that men and women tend to do different jobs, at different levels of seniority, and receive different remuneration \emph{in the aggregate}  \cite{Maschinen}. Almost every country legally enforces equal treatment of women in the labour market. For example, in the UK, paying a woman less than a man to do the same job has been illegal since the Equal Pay Act of 1970, and these rights are even more explicitly protected in the Equalities Act 2010 \cite{GOVUK2017}. So instead of measuring pay discrimination, the GPG is an indicator which summarises the extent to which men and women have access to similar opportunities and remuneration in a society. 
+The GPG is often misrepresented in the media as being an indicator of pay discrimination \cite{Lukas2011}, but it is not intended to measure unequal pay for comparable jobs within a company or sector. Instead, it reflects that men and women tend to do different jobs, at different levels of seniority, and receive different remuneration \emph{in the aggregate}  \cite{Maschinen}. Almost every country legally enforces equal treatment of women in the labour market \cite{owideconomicinequalitybygender}. For example, in the UK, paying a woman less than a man to do the same job has been illegal since the Equal Pay Act of 1970, and these rights are even more explicitly protected in the Equalities Act 2010 \cite{GOVUK2017}. So instead of measuring pay discrimination, the GPG is an indicator which summarises the extent to which men and women have access to similar opportunities and remuneration in a society. 
 
 Various studies have sought to explain the GPG in terms of differences in education, experience, occupational segregation \cite{brynin2017gender}, desires for job flexibility to match social roles, the "motherhood penalty" (where years of experience and promotion opportunities are lost because of childbirth and childcare), personality and social norms \cite{leibbrandt2014}, and in terms of discrimination and bias \cite{owideconomicinequalitybygender}.  These societal factors may cause a company to have a sizeable GPG despite best efforts, such as the presence of fair representation policies and programmes to reduce the gap. 
 
@@ -31,13 +31,13 @@ In the UK, the \emph{Equalities Act 2010 (Gender Pay Gap Information) Regulation
 Currently the Government is helping companies to understand the GPG and the regulations along with recommended actions to close the gap. All this information, the reports and a search engine are available on their website \cite{govuk-gender-pay-gap-service}. The results of this action is that the GPG has reduced from 17.8\% in 2018 to 17.3\% in 2019. By the explanation of this measure, this means, for every pound a man earns, a woman earns 0.827 pence. The content a company should include in their report and how metrics are calculated are detailed in Section \ref{sec:data-prep}.
 
 \subsection{Aims}
-In this project\footnote{Code for this project is available at \url{https://github.com/Ads2020Group6}}, we 
+In this project, we 
 
 \begin{enumerate}
-\item build a pipeline to acquire, clean and augment the 2017, 2018 and 2019 data from the Government Equalities Office\footnote{Our work should apply seamlessly to 2020 data when it is published}
+\item build a pipeline to acquire, clean and augment the 2017, 2018 and 2019 data from the Government Equalities Office\footnote{Code for this project is available at \url{https://github.com/Ads2020Group6}. Our work should apply seamlessly to 2020 data when it is published}
 \item visualise the GPG situation in the UK,
-\item build a pipeline to evaluate various hand-tuned predictive models for predicting,
-companies' GPG from the other descriptive statistics companies are required to submit under the 2017 regulations,
+\item build a pipeline to evaluate various hand-tuned predictive models for predicting
+companies' GPG from the data companies are required to submit under the 2017 regulations,
 \item build a pipeline to use AutoML techniques \cite{tpot-automl} to explore good models and their hyperparameters,
 \item use recent model explainability techniques such as Shapley 
 Additive Explanations \cite{Lundberg2017} to visualise the contributions of most important features, and find that these match the most common explanation for the pay gap \cite{gov-equalities-office-research-report}, and

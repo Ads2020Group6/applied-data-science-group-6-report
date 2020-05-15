@@ -1,12 +1,12 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
 \section{Conclusion}
-In conclusion, this report studies the gender pay gap situation in UK companies. Firstly, we collected UK data the Government Equalities Office. Then we explored and visualised the data and built pipelines to clean it and augment it with engineered features. Finally,  we built predictive models for the GPG, exploring a range of modelling techniques. Our XGBoost model was the most accurate for both the mean and median pay gap indicators, but only had a best $R^2$ score of 62\% on our holdout validation set.
+This report studies the gender pay gap situation in the UK. Firstly, we collected UK data from the Government Equalities Office. Then we explored and visualised the data and built pipelines to clean it and augment it with engineered features. Finally,  we built predictive models for the GPG, exploring a range of modelling techniques. Our XGBoost model was the most accurate for both the mean and median pay gap indicators, but only had a best $R^2$ score of 62\% on our holdout validation set.
 
 Our analysis shows that the most commonly cited reasons for the existence of the pay gap -- the over-representation of women in lower-paid jobs and under-representation in highly paid roles -- go a long way to explaining the GPG, but are not sufficient to accurately predict a company's gender pay gap. Mispredictions from our model highlight some companies which, when scrutinised, hide behind this reason for the GPG when it does not apply to them. 
 In this way, our model can be used to expose companies, and encourage further investigation. We believe this approach can contribute to the goal of achieving gender equality. 
 
-Of course, our model has limitations. We only consider some UK companies, making the applicability of our models local to the UK only. Our model's best accuracy is not particularly impressive, and finding additional sources of data with more features may allow more accurate models to be created.
+One limitation is that we only consider the UK companies, making the applicability of our models local to the UK. Our model's best accuracy is not particularly impressive, and as a future work we can concentrate on finding additional sources of data for more countries with more features like full-time and part-time distribution to allow more accurate models to be created.
 
 \paragraph{What we learned about doing Data Science}
 \vspace{-0.5em}
@@ -18,6 +18,6 @@ Of course, our model has limitations. We only consider some UK companies, making
     \item The errors, class imbalances etc. in the data need careful thought because they have consequences for model validity.\vspace{-0.25em}
     \item AutoML can help in the dark art of building good models, but is incredibly time-consuming to run. It is better
     suited to production systems than for exploratory use.\vspace{-0.25em}
-    \item There is a large gap between having modelled the problem and
+    \item There is a large gap between modelling the problem and
     having a polished, deployable data product. Extending our work into an interactive tool would be a huge further effort.
 \end{itemize}

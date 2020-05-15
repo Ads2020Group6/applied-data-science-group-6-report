@@ -9,14 +9,14 @@
 % \todo {Some suggestions.
 % - Data by region. e.g. WorldMaps for data availability.
 % - World map that indicates heat map for gap.}
-
-Using the OECD data, we found out the top countries reporting worst GPG percentages in 2018. It must be noted that not all countries report their GPG and hence the plot in Figure \ref{fig:top-10-gpg} shows a partial story.
-
     \begin{centering}
         \includegraphics[width=0.99\linewidth]{images/Top10Countries.png}
         \captionof{figure}{Comparison of 10 OECD countries' GPG in 2018}
         \label{fig:top-10-gpg}
     \end{centering}
+Using the OECD data, we found out the top countries reporting worst GPG percentages in 2018. It must be noted that not all countries report their GPG and hence the plot in Figure \ref{fig:top-10-gpg} shows a partial story.
+
+
     
 OECD data provided GPG percentages from 2000 to 2018 for the above countries and that was plotted to see the trend over the past 18 years in figure \ref{fig:country-time-gap}. A decrease in the pay gap can be observed from the graph for most countries. The decreasing trend is different for different countries that indicates an effect of different policies in place.
 
@@ -38,11 +38,11 @@ OECD data provided GPG percentages from 2000 to 2018 for the above countries and
     \end{centering}
 
 \paragraph{Companies grouped by Industrial Sector}
-    The number of countries in each industrial sector (at top-level granularity) as shown in Figure\ \ref{fig:companies-by-sector}. Illustrates the general demographic of the data where the majority of the data arises from Education, Manufacturing and etc.
+    The number of countries in each industrial sector (at top-level granularity) are shown in Figure\ \ref{fig:companies-by-sector}. The majority of the data arises from Education, Manufacturing, Wholesale and retail trade, and Admistrative and support services.
 
     \begin{centering}
         \includegraphics[width=0.6\linewidth]{images/2018-all-companies-sectors.png}
-        \captionof{figure}{       \begin{scriptsize}Number of companies by section in 2018: the top 5 are (P): Education, {\bf (C):} Manufacturing, {\bf (G):} Wholesale and retail trade, {\bf (N):} Administrative and support service activities and {\bf (Q):} Human health and social work activities. The rest of the codes is listed in Appendix \ref{app:sector_codes}        \end{scriptsize} }
+        \captionof{figure}{       \begin{scriptsize}Number of companies by section in 2018: the top 5 are (P): Education, {\bf (C):} Manufacturing, {\bf (G):} Wholesale and retail trade, {\bf (N):} Administrative and support service activities and {\bf (Q):} Human health and social work activities. The rest of the codes are listed in Appendix \ref{app:sector_codes}        \end{scriptsize} }
         \label{fig:companies-by-sector}
     \end{centering}
 \vspace{-1.5em}
@@ -75,12 +75,13 @@ This is visualised in for 2018 in Figure \ref{fig:workforce-composition}. At the
 \paragraph{Genders making up each pay quartile} 
 Distribution of the percentages of each gender making up the various pay quartiles is shown in Figure \ref{fig:Distribution of GPG per quartile 2017}. The male and female proportions are duals, and so are symmetric.
     
-        \begin{centering}
-        \includegraphics[width=0.99\linewidth]{images/2017-all-companies-quartiles.png}
-        \captionof{figure}{Distribution of percentage GPG per quartile}
-        \label{fig:Distribution of GPG per quartile 2017}
-    \end{centering}
-    We see that the situation is very unequal: men are much more likely to make up a big percentage of the top quartile and a small percentage of the lowest-paid quartile.
+\begin{centering}
+    \includegraphics[width=0.99\linewidth]{images/2017-all-companies-quartiles.png}
+    \captionof{figure}{Distribution of percentage GPG per quartile}
+    \label{fig:Distribution of GPG per quartile 2017}
+\end{centering}
+    
+We see that the situation is very unequal: men are much more likely to make up a big percentage of the top quartile and a small percentage of the lowest-paid quartile.
     
 %      whereby the Lower and LowerMiddle region of violin plot illustrate a larger distribution of females to be found in this quartile compared to their male counterpart. 
 % While the UpperMiddle shows a a bi-model distribution for both gender though the percentage of employee are found in the lower end with 58\% and 12\% compared to 92\% and 47\% of males. With the Top quartiles shows a large  of male employees in the top quartile of a company.   
@@ -88,13 +89,7 @@ Distribution of the percentages of each gender making up the various pay quartil
 \paragraph{Fairness of representation by gender in the top vs lowest pay quartiles}
   We derived additional indicators that compensate for the gender mix in a company. We try to ask the question \textit{What percentage of the company's women are in the top quartile?} rather than \textit{What percentage of the employees in the top quartile are women?} 
    
-  The 2018 gender representation in the lower quartile is shown in Figure \ref{fig:lower-quartile} and for the upper
-  quartile in Figure \ref{fig:upper-quartile}. Most companies have an over-representation of the male
-  workforce in the top quartile and an over-representation of the
-  female workforce in the bottom quartile, and our exploration of the data showed the trend holding for 2017 and 2019 as well.
-   
-    \begin{centering}
-
+   \begin{centering}
         \includegraphics[width=\linewidth]{images/2018-how-fair-genders-LowerQuartile.png}
         \captionof{figure}{            \begin{scriptsize}
 2018 Bottom quartile gender representation imbalance (only showing companies that had employees of both genders.) Companies are ranked by fairness of representation of gender in the quartile from most skewed towards women to most skewed towards men from left to right.  \textbf{(A):} Most skewed towards women: At \emph{Kongsberg Automotive Limited,} 100\% of the company's women are in the bottom quartile vs 11.8\%  of the company's men. 15\% of the employees are female.
@@ -104,9 +99,7 @@ Distribution of the percentages of each gender making up the various pay quartil
 
         
         \label{fig:lower-quartile}
-    \end{centering}
 
-    \begin{centering}
         \includegraphics[width=\linewidth]{images/2018-how-fair-genders-TopQuartile.png}
         \captionof{figure}{            \begin{scriptsize} 
 2018 Top quartile gender representation imbalance (only showing companies that had employees of both genders.) Companies are ranked by fairness of representation of gender in the quartile from most skewed towards women to most skewed towards men from left to right. \textbf{(A):} Most skewed towards women. At \emph{G. Burley \& Sons Limited} 100\% of the company's female employees
@@ -119,5 +112,11 @@ Distribution of the percentages of each gender making up the various pay quartil
         
         \label{fig:upper-quartile}
     \end{centering}
-    
+  
+The 2018 gender representation in the lower quartile is shown in Figure \ref{fig:lower-quartile} and for the upper
+quartile in Figure \ref{fig:upper-quartile}. Most companies have an over-representation of the male
+workforce in the top quartile and an over-representation of the
+female workforce in the bottom quartile, and our exploration of the data showed the trend holding for 2017 and 2019 as well.
+   
+  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
