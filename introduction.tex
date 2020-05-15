@@ -1,0 +1,48 @@
+\section{Introduction}
+% Gender inequality has been present across the entire human history, most favouring men over women \todo{CITATION?}. Socially constructed gender inequality has been present in important aspects such as human rights, education, life expectancy, and in the workforce.
+
+% \textbf{What is the GPG?}
+The Gender Pay Gap (GPG) is an indicator which measures the difference in pay for men and women within a population. In the UK, the Office of National Statistics (ONS) defines the GPG as \textit {the gap between the median hourly earnings, excluding overtime, of men and women}. Separate indicators are defined for bonus pay \cite{ONS2018}.  
+
+The GPG is often misrepresented in the media as being an indicator of pay discrimination \cite{Lukas2011}, but it is not intended to measure unequal pay for comparable jobs within a company or sector. Instead, it reflects that men and women tend to do different jobs, at different levels of seniority, and receive different remuneration \emph{in the aggregate}  \cite{Maschinen}. Almost every country legally enforces equal treatment of women in the labour market. For example, in the UK, paying a woman less than a man to do the same job has been illegal since the Equal Pay Act of 1970, and these rights are even more explicitly protected in the Equalities Act 2010 \cite{GOVUK2017}. So instead of measuring pay discrimination, the GPG is an indicator which summarises the extent to which men and women have access to similar opportunities and remuneration in a society. 
+
+Various studies have sought to explain the GPG in terms of differences in education, experience, occupational segregation \cite{brynin2017gender}, desires for job flexibility to match social roles, the "motherhood penalty" (where years of experience and promotion opportunities are lost because of childbirth and childcare), personality and social norms \cite{leibbrandt2014}, and in terms of discrimination and bias \cite{owideconomicinequalitybygender}.  These societal factors may cause a company to have a sizeable GPG despite best efforts, such as the presence of fair representation policies and programmes to reduce the gap. 
+
+Overly simplistic interpretations of the GPG have led some to dismiss the pay gap as arising solely from women's choices and so it ``does not exist" \cite{Lukas2011}. However to do so is to disregard an important tool for conversations about deeper structural inequalities in our society.
+%\todo{Not sure what this paragraph means?}
+% It has been recognised that the overall wage structure, that is, the price of the labour market for skills, may have a significant impact on the relative wages of different subgroups in the labour market. For example, because women have less labour market experience than men on average, the increase in experience gains will increase the GPG under the same conditions \cite{Kahn2013}. 
+
+This interpretation of the GPG was brought into sharp relief during COVID-19 crisis of 2020, when several countries instated lock-down measures that required couples to work from home. Popular media in the UK and the US reported that -- despite no legislative discrimination --  women found far less time than men to work, and their careers were the ones that suffered as a result of the unequal division of childcare, emotional labour and unpaid work in the home \cite{guardian-lockdown-uk, guardian-lockdown-us}. It remains to be seen how this will be reflected in future pay gap figures. 
+
+\subsection{Related Work}
+International comparisons of GPG data show that the GPG manifests differently in different countries. In poor countries or in the countries where the demand for women is in short supply, the GPG is smaller, and vice versa \cite{Kahn2013}. 
+
+Polacheck and Xiang \cite{polachek2009} used data from 3 sources covering 35 countries and spanning more than three decades to study how the gender gap manifests in different countries. They found that factors correlated with decreased female lifetime participation in the workforce (top marginal tax rate, fertility rate, difference in spousal ages at time of first marriage) were associated with an increased GPG, and replicated other studies' findings that labour market institutions such as minimum wage laws and national collective bargaining were associated with a decreased wage gap.  
+
+The World Economic Forum’s \emph{Global Gender Gap Report 2020} predicts that with the current rate of decrease in the pay gap, women and men will only have equal pay in 257 years. This is an increase from the 2018 forecast of 202 years  \cite{wef-gpg-report-2020}. 
+
+Montenegro investigated the GPG in Chile and used Oaxaca decomposition to separate explained and unexplained factors \cite{montenegro-chile}. He found systematic differences along gender lines in how education and experience affect the pay gap, and that the unexplained wage gap is higher in upper quantiles. These findings were stable over a decade in Chile. 
+
+Hirsch, König, Marion and Moeller \cite{german-regional} investigated regional differences in the GPG in Germany, and found the unexplained GPG for young workers to be substantially lower in large metropolitan areas than in rural areas. 
+
+The UK has a comparatively large GPG \cite{ONS2018}, but it has been declining, mostly because the gap is worse in high age groups, and decreases as they retire \cite{brynin2017gender}. We show this trend from the OECD data in Figure\ \ref{fig:top-10-gpg} and Figure\ \ref{fig:country-time-gap}. 
+
+In the UK, the \emph{Equalities Act 2010 (Gender Pay Gap Information) Regulations 2017} \cite{equality-act-gpg-regulations} requires all  employers in England, Scotland or Wales with more than 250 employees to report their GPG figures annually.
+Currently the Government is helping companies to understand the GPG and the regulations along with recommended actions to close the gap. All this information, the reports and a search engine are available on their website \cite{govuk-gender-pay-gap-service}. The results of this action is that the GPG has reduced from 17.8\% in 2018 to 17.3\% in 2019. By the explanation of this measure, this means, for every pound a man earns, a woman earns 0.827 pence. The content a company should include in their report and how metrics are calculated are detailed in Section \ref{sec:data-prep}.
+
+\subsection{Aims}
+In this project\footnote{Code for this project is available at \url{https://github.com/Ads2020Group6}}, we 
+
+\begin{enumerate}
+\item build a pipeline to acquire, clean and augment the 2017, 2018 and 2019 data from the Government Equalities Office\footnote{Our work should apply seamlessly to 2020 data when it is published}
+\item visualise the GPG situation in the UK,
+\item build a pipeline to evaluate various hand-tuned predictive models for predicting,
+companies' GPG from the other descriptive statistics companies are required to submit under the 2017 regulations,
+\item build a pipeline to use AutoML techniques \cite{tpot-automl} to explore good models and their hyperparameters,
+\item use recent model explainability techniques such as Shapley 
+Additive Explanations \cite{Lundberg2017} to visualise the contributions of most important features, and find that these match the most common explanation for the pay gap \cite{gov-equalities-office-research-report}, and
+\item examine where our model fails and find interesting information in the mispredictions: notably in the detailed reports from some companies which have a larger pay gap than our model predicts, who justify this gap as resulting from a penalty for part-time work that is more severe than one would expect from a \emph{pro rata} reduction in earnings. Such remuneration policies entrench gender inequality.
+
+    
+    
+\end{enumerate}

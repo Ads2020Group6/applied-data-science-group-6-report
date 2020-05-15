@@ -1,0 +1,111 @@
+\documentclass[a4, 11pt]{article}
+\usepackage{flafter}
+\usepackage[lastpage,user]{zref}
+\usepackage{graphics,graphicx}
+\usepackage{multicol}
+\usepackage{parskip}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage[ddmmyyyy]{datetime}
+\usepackage[utf8]{inputenc}
+\usepackage[title]{appendix}
+\usepackage{wasysym}
+\usepackage{url}
+\usepackage[british]{babel}
+\usepackage[table,svgnames]{xcolor}
+\usepackage{booktabs}
+\usepackage{palatino}
+\usepackage{tgcursor}
+\usepackage{csquotes}
+\usepackage[style=ieeetr,backend=biber, giveninits=true,style=numeric,sorting=none]{biblatex}
+\usepackage{fancyhdr}
+\usepackage{anysize}
+\marginsize{1.6cm}{1.6cm}{1.5cm}{1.5cm}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usepackage{ifxetex,ifluatex}
+\usepackage{etoolbox}
+\usepackage[compact,explicit]{titlesec}
+\usepackage{appendix}
+\usepackage{framed}
+\usepackage[font=footnotesize,labelfont=small, tableposition=top]{caption}
+\setlength{\marginparwidth}{2cm}
+\setlength{\headheight}{14pt}
+\usepackage[colorinlistoftodos,prependcaption]{todonotes}
+\presetkeys{todonotes}{inline}{}
+%\usepackage[section]{placeins}
+\usetikzlibrary{matrix}
+\usetikzlibrary{positioning}
+\usetikzlibrary{backgrounds}
+\usepackage{dblfloatfix}
+\usepackage{titlesec}
+\usepackage{ragged2e}
+
+\setlength{\parskip}{0.12cm}
+\setlength{\parindent}{0pt}
+
+\addbibresource{references.bib}
+\addbibresource{mendeley-group.bib}
+
+\pagestyle{fancy}
+\fancyhf{} %Clear header and footer
+\rhead{\thepage\ of\ \zpageref{LastPage}} %Custom footer
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headrulewidth}{0pt}
+\hyphenation{speed-up}
+\hyphenation{ad-van-tage}
+
+\newcommand{\code}[1]{{\scriptsize \texttt{#1}}}
+
+\titlespacing\section{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+
+\title{\vspace{-5em} {\Huge  Exploring the Gender Pay Gap }
+\author{
+ Shivangi Das\\
+ \small{ \texttt{gg19687@bristol.ac.uk}}
+  \and
+ D. Leandro Guardia Vaca\\
+  \small{\texttt{uu19703@bristol.ac.uk}}
+ \and
+ Thorben Louw\\
+\small{\texttt{hb19467@bristol.ac.uk}}
+  \and
+ Sarath Varman\\
+ \small{ \texttt{zj19545@bristol.ac.uk}}
+ \and
+ Kunlin Yang\\
+  \small{\texttt{wb19074@bristol.ac.uk}}
+ \and
+ Binqian Zhu\\
+  \small{\texttt{vp19511@bristol.ac.uk}}
+ \and Group 6
+}}
+\date{\today}
+\begin{document}
+    
+        \maketitle
+    %    \listoftodos
+        \input{abstract}
+    
+
+    \thispagestyle{fancy}
+  \begin{multicols}{2}
+
+    \input{introduction}   
+    \input{dataprep}
+    \input{dataexplore}
+    \input{modelling}
+    \input{conclusion}
+
+\renewcommand*{\bibfont}{\footnotesize}
+\printbibliography
+\end{multicols}
+
+\begin{appendices}
+    \input{appendices}
+\end{appendices}
+
+\end{document}

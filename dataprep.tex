@@ -1,0 +1,39 @@
+\section{Data Preparation} 
+\label{sec:data-prep}
+
+\paragraph{World Data}
+The GPG is a global issue with data for many industrialised countries recorded by various organisations. For example, the Organisation for Economics Co-operation and Development (OECD), publishes gender pay gap for its 36 member countries, but it is very high level and only includes one measurement of the pay gap per year for each country. Another source of world data we explored was from UN's International Labour Organisation (ILO), with the wage gap being available as a percentage against indicators such as Average hourly earnings of employees, and number of employees by gender and institutional sector.
+To visualise the data, we grouped and counted them by year to see how many countries had reported their GPG and plotted the country-wise GPG. This data also only had one data-point per country per year.
+
+\paragraph{UK GPG Data}
+The UK data from the Government Equalities Office provided much more scope for investigation.
+The dataset contains 25 columns including company metadata, GPG indicators and submission information, the columns used in our analysis are described in Table \ref{tab:uk-gov-data-dic} in Appendix \ref{app:data-dic}.  The calculation methods for the required metrics are unambiguously defined on the \texttt{gov.uk} website \cite{govuk-how-to-calculate}. However, these figures are self-reported, and not audited independently. Data from 2017-18 and 2018-19 years include records of almost 11,000 companies. However, due to the COVID-19 pandemic the deadline for the report submission on 2020 has been extended, by the time we wrote this document 5463 companies reported their pay gap for the ongoing year. While general and domain specific transformation techniques are described in the following paragraphs, their effectiveness for modelling is discussed in Section \ref{sec:modelling}.
+
+\subsection{Data acquisition}
+The module built for data ingress automatically retrieves and stores data from 2017, 2018 and 2019 UK GPG reports from the \code{uk.gov} website. Additionally, it fetches a dataset of the Standard Industrial Classification (SIC) data from a public Github repository, which is used during data augmentation to expand details about industry sections the companies belong to (see section \ref{sic-agment}). Our data cleaner module recognises existing files and skips downloading them unless explicitly requested, however, it is flexible to overwrite them if it is explicitly stated. This design resulted helpful since the companies are still submitting their 2019 reports; we observed up to 15 new entries in recent days.
+
+\subsection{Cleaning and transforming the UK GPG data}
+\paragraph{Data Removal} Our cleaning pipeline starts by removing data such as duplicates, columns with different values in all rows, e.g. \code{CompanyName}, as well as irrelevant ones such as \code{DateSubmitted}. The  \code{Address} column was not included in our analysis since these indicate central offices location, which are less descriptive to a company than the rest of the data.
+
+\paragraph{Data Imputation} Both \code{DiffHourlyPercent} and \code{DiffBonusPercent} means and medians missing values were imputed with the means and medians of their respective columns in order to follow the statistic description they represent.
+
+\paragraph{Categorical Data} 
+\code{EmployerSize} contains 7 values, 6 of them indicate a company size range and the other represent absence with the text `Not Specified`, records without this information was dropped because it was less than 1\%, the company size distribution in 2018 is shown in Figure\ \ref{fig:employer-size-dist}.
+We transformed these features using three techniques: midpoint quantification, one hot encoding and indexing. Firstly, we created a new column with midpoint values of the the given range, if the original value is \code{500 to 999} or \code{20,000 and more} we augmented these rows with 750 and 35,000, respectively. For one-hot encoding\ \cite{pandas-get-dummies}, we created 6 new columns, one for each possible employer size. The respective size column is set to \code{1}, and the others to \code{0}. The third approach was to use label encoding where each category gets a numeric label starting from zero. We found the first two useful in our modelling experiments (Section\ \ref{sec:modelling}).
+
+\paragraph{Transforming Industry Sectors}
+\label{sic-agment}
+The \code{SicCodes} column contains one or multiple SIC codes (Standard Industrial Classification of Economic Activity) \cite{sic-codes-2007}, these are five digit encodings that classify the company by the activities they perform and the sectors they belong to. There exist 731 sectors organised in 21 high level sections. Due to high granularity and class imbalance industry sectors were discarded and kept the analysis with sections only, where imbalance and also be found, see Figure \ref{fig:companies-by-sector}. Fortunately this imbalance does not influence our regression modelling, it would if we aimed to classify companies by their sectors. 
+
+Raw sic codes were cleaned and formatted to start two transformation techniques; exploding and splitting. The first is transforming rows with multiple SIC codes into the same number of rows each including one code and then one hot encode its values into new 21 columns each representing the industry section. In the dataset in 2018, the number of rows increased around 30\% (10,828 to 13,911). For the second approach, instead of exploding, SIC codes were split and distributed among the same new 21 columns so one row is kept for each company.
+
+\paragraph{Augmenting Gender Representation}
+Through iterations of modelling, we derived additional useful features from the existing data.
+
+Although the number of employees of each gender is not provided, we can derive a number of features from the quartile divisions that reflect the relative representation of a company's workforce by gender in each quartile, as well as the relative percentages of male and female employees in total, and the skew towards one gender.
+
+Additionally, we used bonus field data to derive information about the skew towards one gender receiving bonuses.
+These fields are described in Table\ \ref{tab:additional-fields} of Appendix\ \ref{app:data-dic}. 
+
+% \todo{update with whatever happens in the model} % Maybe reference and invite to read the modelling section as I did in the previous paragraphs.
+

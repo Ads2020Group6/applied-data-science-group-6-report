@@ -1,0 +1,11 @@
+ \begin{abstract}
+    Gender Pay Gap indicators reflect the differing experiences, opportunities and expectations men and women have in our society. Since 2017, companies in the UK have been required to report Gender Pay Gap statistics annually. We use this data to explore and visualise the current gender pay gap situation in the UK. 
+    
+    A common justification give for
+    the pay gap in the UK is the over-representation of women in more flexible, lower-paid roles. 
+    To test whether this justification holds, we build predictive models for the two main gender pay gap indicators (mean and median hourly difference). Our best hand-tuned model (xgboost) predicts the pay gap of companies it has never seen before with a coefficient of correlation ($R^2$) of 62\% on holdout validation data of companies it did not see during training. We also use AutoML techniques and find a slightly better model, at the cost of much greater complexity and interpretability. We turn to model explainability techniques such as permutation importance and SHAP values to investigate the importance of features that our models use for their predictions, and find that the skew in a company's gender representation in the top and bottom quartiles of pay are indeed the largest predictive factors. Our most explanatory engineered features based on gender skew present a much clearer picture of a company's pay gap than the raw metrics reported by the Government Equalities Office.
+    
+    Mispredictions by our model may indicate instances of other causes being responsible for a company's pay gap. By manually inspecting the detailed internal reports of some companies where our model mispredicted, we find some questionable justifications for unexpectedly large pay gaps.
+    
+
+\end{abstract}

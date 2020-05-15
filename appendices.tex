@@ -1,0 +1,132 @@
+\section{Description of original  and engineered features in the UK GPG data}
+\label{app:data-dic}
+
+
+    \begin{centering}
+    \scriptsize{
+        \captionof{table}{Notable fields in the UK GPG data \cite{gov-uk-gpg-data}}
+    \label{tab:uk-gov-data-dic}
+    \begin{tabular}{|l|l|p{10cm}|}\hline 
+         & \emph{Field} & \emph{Description} \\ \hline
+        
+        \multirow{2}{4em}{Gender Pay Gap} 
+        & \texttt{DiffMeanHourlyPercent} &  Difference between male and female mean hourly pay, as a percentage of mean male hourly pay \\ 
+        & \texttt{DiffMedianHourlyPercent} & Difference between male and female median hourly pay, as a percentage of median male hourly pay \\ \hline
+        \multirow{4}{4em}{Bonus-related} 
+        & \texttt{DiffMeanBonusPercent } & Difference between mean male and female bonus pay, as a percentage of mean male bonus pay \\ 
+        & \texttt{DiffMedianBonusPercent }  & Difference between median male and female bonus pay, as a percentage of mean male bonus pay\\ 
+        & \texttt{MaleBonusPercent } &  Percentage of male employees who received any bonus\\ 
+        & \texttt{FemaleBonusPercent} & Percentage of female employees who received any bonus\\ \hline
+        \multirow{2}{4em}{Company Data} 
+        & \texttt{EmployerSize} & One of 7 categories indicating number of employees \\ 
+        & \texttt{SicCodes}  & List of Standard Industry Classifiers describing company activity \\ 
+        & \texttt{CompanyLinkToGPGInfo} & Internal company GPG report for the year (optional) \\ \hline
+    \end{tabular} 
+    }
+
+\end{centering}
+
+
+\begin{centering}
+    \scriptsize{
+    \captionof{table}{Additional engineered features derived from fields in the UK GPG data \cite{gov-uk-gpg-data}}
+    \label{tab:additional-fields}
+    \begin{tabular}{|l|p{9cm}|}\hline 
+        \emph{Field} & \emph{Description} \\ \hline
+        \texttt{MalePercent} &  Percentage of men in the company \\ \hline
+        \texttt{FemalePercent} & Percentage of women in the company\\ \hline
+        \texttt{WorkforceGenderSkew} & Difference of \texttt{MalePercent} and \texttt{FemalePercent} \\ \hline
+        \texttt{PercMaleWorkforceInTopQuartile} & Percentage of men in the top quartile compared to all men in the company\\ \hline
+        \texttt{PercFemaleWorkforceInTopQuartile} & Percentage of women in the top quartile compared to all women in the company\\ \hline
+        \texttt{RepresentationInTopQuartileSkew} & Difference in representation of men and women in percentage for top quartile\\ \hline
+        
+        \texttt{PercMaleWorkforceInUpperMiddleQuartile} & Percentage of men in the upper middle quartile compared to all men in the company\\ \hline
+        \texttt{PercFemaleWorkforceInUpperMiddleQuartile} & Percentage of women in the upper middle quartile compared to all women in the company\\ \hline
+        \texttt{RepresentationInUpperMiddleQuartileSkew} & Difference in representation of men and women in percentage for upper middle quartile\\ \hline
+        
+        \texttt{PercMaleWorkforceInLowerMiddleQuartile} & Percentage of men in the lower middle quartile compared to all men in the company\\ \hline
+        \texttt{PercFemaleWorkforceInLowerMiddleQuartile} & Percentage of women in the lower middle quartile compared to all women in the company\\ \hline
+        \texttt{RepresentationInLowerMiddleQuartileSkew} & Difference in representation of men and women in percentage in lower middle quartile\\ \hline
+        
+        \texttt{PercMaleWorkforceInLowerQuartile} & Percentage of men in the lower quartile compared to all men in the company\\ \hline
+        \texttt{PercFemaleWorkforceInLowerQuartile} & Percentage of women in the lower quartile compared to all women in the company\\ \hline
+        \texttt{RepresentationInLowerQuartileSkew} & Difference in representation of men and women in percentage in lower quartile\\ \hline
+        
+        \texttt{BonusGenderSkew} & Difference in \texttt{MaleBonusPercent} and \texttt{FemaleBonusPercent} \\ \hline
+        
+    \end{tabular} 
+    }
+
+\end{centering}
+
+
+
+\section{TPOT configuration}
+\label{tpot-config}
+
+We ran TPOT with the parameters 
+\code{generations=10},
+\code{population\_size=150}, 
+\code{cv=3} (3-fold cross-validation as in our manual model)
+search,
+\code{scoring='r2'} (optimising for the R2 score).
+
+The search lasted more than 5 hours, and produced models which were only slightly more accurate than the hand-tuned models.
+
+As an example output, for the Median pay gap the best model was:
+
+\begin{scriptsize}
+\begin{verbatim}
+make_pipeline(
+    StackingEstimator(estimator=AdaBoostRegressor(learning_rate=0.5,
+        loss="linear", n_estimators=100)),
+    ExtraTreesRegressor(bootstrap=False, max_features=0.8, 
+        min_samples_leaf=1, min_samples_split=7, 
+        n_estimators=100)
+)
+\end{verbatim}
+\end{scriptsize}
+
+Unfortunately, stacked pipelines do not work with the explainability tools we used, so we did not pursue AutoML futher.
+
+% and found the best model for the mean to be an \code{ExtraTreesRegressor} (\cite{extra-tree-regressor}) with parameters \code{bootstrap=False},
+% \code{max\_features=0.7500000000000001},
+% \code{min\_samples\_leaf=1},
+% \code{min\_samples\_split=2},
+% \code{n\_estimators=100}.
+
+\section{SIC 2007 Sector codes}
+\label{app:sector_codes}
+
+    \begin{centering}
+    \scriptsize{
+        \captionof{table}{SIC 2007 Sector codes}
+    \label{tab:sector-codes}
+    \begin{tabular}{|c|l|}\hline 
+    \emph{Code} & \emph{Description} \\ \hline 
+A & Agriculture, Forestry and Fishing \\
+B & Mining and Quarrying \\
+C & Manufacturing \\
+D & Electricity, gas, steam and air conditioning supply \\
+E & Water supply, sewerage, waste management and \\
+F & Construction \\
+G & Wholesale and retail trade; repair of motor vehicles and \\
+H & Transportation and storage \\
+I & Accommodation and food service activities \\
+J & Information and communication \\
+K & Financial and insurance activities \\
+L & Real estate activities \\
+M & Professional, scientific and technical activities \\
+N & Administrative and support service activities \\
+O & Public administration and defence; compulsory social \\
+P & Education \\
+Q & Human health and social work activities \\
+R & Arts, entertainment and recreation \\
+S & Other service activities \\
+T & Activities of households as employers; undifferentiated \\
+U & Activities of extraterritorial organisations and \\
+\hline
+    \end{tabular} 
+    }
+
+\end{centering}
